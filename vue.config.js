@@ -1,3 +1,19 @@
 module.exports = {
-  lintOnSave: false
+  lintOnSave: false,
+
+  transpileDependencies: [
+    'vuetify'
+  ],
+
+  css: {
+    loaderOptions: {
+      scss: {
+        additionalData: `@import "~@/variables.scss";`
+      },
+    }
+  },
+
+  module: {
+    noParse: /\/native-require.js$/,
+  }
 }
