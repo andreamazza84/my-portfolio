@@ -7,13 +7,24 @@
     >
       <v-img
         contain
-        max-height="70%"
-        src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+        max-height="100%"
+        src="/img/logo.png"
       ></v-img>
     </v-avatar>
 
     <v-toolbar-title class="font-weight-black headline">
       PORTFOLIO
     </v-toolbar-title>
+    <v-spacer></v-spacer>
+      <v-btn plain @click="$vuetify.goTo('#about-me')">about</v-btn>
+      <v-btn plain @click="$vuetify.goTo('#portfolio')">portfolio</v-btn>
+      <v-btn plain @click="$vuetify.goTo('#contact')">contatti</v-btn>
+    <v-btn
+      fab
+      plain
+      @click="$vuetify.goTo('#hero')"
+    >
+      <v-icon>mdi-chevron-double-up</v-icon>
+    </v-btn>
   </v-app-bar>
 </template>

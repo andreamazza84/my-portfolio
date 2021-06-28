@@ -1,44 +1,44 @@
-@import '../variables.scss';
 
-// //Background 
-// $b-primary: '#c4d2ddee';
-// $b-complementary: '#ddcfc4ee';
-// $b-triadic-1: '#d2ddc4ee';
-// $b-triadic-2: '#ddc4d2ee';
-// $b-semidark: '#333';
-// $b-dark: '#171718';
-// $b-footer: '#000';
+//Background 
+$b-primary: #c4d2ddee;
+$b-complementary: #ddcfc4ee;
+$b-triadic-1: #d2ddc4ee;
+$b-triadic-2: #ddc4d2ee;
+$b-mild: #2B3C4A;
+$b-dark: #171718;
+$b-footer: #000;
 
-// //Text
-// $f-clear: '#fdfdfd';
-// $f-dark: '#171718';
-// $f-semidark: '#333';
+//Text
+$f-clear: #fdfdfd;
+$f-dark: #171718;
+$f-mild: #2B3C4A;
+$f-semidark: #333;
 
 #navbar{
-  background-color: #c4d2ddee;
+  background-color: $b-primary;
 }
 #about-me{
-  background-color: #c4d2ddee;
-  color: #2B3C4A;
+  background-color: $b-primary;
+  color: $f-mild;
   min-height: calc(100vh - 100px);
 }
 #features{
-  background-color: #2B3C4A;
-  color: #fdfdfd;
+  background-color: $b-mild;
+  color: $f-clear;
   min-height: calc(100vh - 100px);
 }
 #portfolio{
-  background-color: #2B3C4A;
-  color: #fdfdfd;
+  background-color: $b-mild;
+  color: $f-clear;
   min-height: calc(100vh - 100px);
-}
+  }
 #contact{
-  background-color: #2B3C4A;
-  color: #fdfdfd;
+  background-color: $b-mild;
+  color: $f-clear;
 }
 #footer{
-    color: #c4d2ddee;
-    background-color: #171718;
+    color: $b-primary;
+    background-color: $b-dark;
 }
 
 .biografy{
@@ -70,10 +70,10 @@
   }
 }
 .code-icon{
-  background-color: #2B3C4A;
-  color: #f7f7f7;
+  background-color: $b-mild;
+  color: $f-clear;
   transition: all 0.3s;
-  &:hover{
+  &:hover, &:focus{
     transform: translateY(-12px);
   }
   i{
@@ -81,7 +81,7 @@
   }
 }
 .btn-submit{
-  background-color: #ddc4d2ee !important;
+  background-color: $b-triadic-2 !important;
 }
 
 .project{

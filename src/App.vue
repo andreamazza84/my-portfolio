@@ -86,7 +86,7 @@
               ricerca e sviluppo sia l'implementazione sul campo.</p>
               <p class="brackets-long-text">Ho investito in formazione concludendo un Master in Gestione
               dell'Energia per Edifici e Infrastrutture, seguendo corsi di programmazione di BMS presso Schneider Electric e abilitandomi come PES-PAV/PEI.
-              Ho lavorato ancora nel settore, prima per TESI Engineering a Trento e, più recentemente, per AWS a Milano.
+              Ho lavorato ancora nel settore, prima per TESI Engineering a Trento e più recentemente per AWS a Milano.
               Quest'ultima esperienza mi ha consentito di avvicinarmi maggiormente al mondo digitale e di cogliere l'opportunità
               per un cambio di rotta verso lo sviluppo web.</p> 
               <p class="brackets">}</p>
@@ -173,7 +173,7 @@
       <section id="portfolio">
         <div class="py-12"></div>
 
-        <v-container>
+        <v-container class="text-center">
           <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">Portfolio</h2>
           <v-responsive
             class="mx-auto mb-12"
@@ -188,7 +188,7 @@
             class="mx-auto title font-weight-light mb-8 align-center"
             max-width="1140"
           >
-            <p>Alcuni dei lavori sviluppati durante il Corso Boolean Careers 2020/21</p>
+            <p class="subtitle">Alcuni dei lavori sviluppati durante il Corso Boolean Careers 2020/21</p>
           </v-responsive>
 
           <v-row>
@@ -198,44 +198,40 @@
               cols="12"
               md="4"
             >
-              <v-img
-                :src="(i === counter)? src_h : src"
-                class="project mb-4"
-                max-width="489"
-                max-height="275"
-                v-on:mouseover="hover(i)"
-                v-on:mouseleave="blur()" 
-                aspect-ratio="1.7778"
-                cover
-              >
-              </v-img>
+           
+            <BaseCarousel
+              :items="src"
+            />
 
               <h3
-                class="font-weight-black mb-4 text-uppercase"
+                class="font-weight-black mt-6 text-uppercase"
                 v-text="title"
-              ></h3>
+              >
+              </h3>
 
               <!-- <div
                 class="title font-weight-light mb-5"
                 v-text="text"
               ></div>
-
+              -->
               <v-btn
-                class="ml-n4 font-weight-black"
+                class="mb-4 font-weight-black"
+                color="#fdfdfd"
                 text
               >
-                Continue Reading
+                <i class="fas fa-external-link-alt"></i>
               </v-btn>
-              -->
+              
             </v-col>
           </v-row>
 
           <v-row>
             <v-col class="mt-100">
               <v-btn
-                class="align-self-end"
+                class="align-self-end justify-center"
                 fab
                 outlined
+                color="#fdfdfd"
                 @click="$vuetify.goTo('#contact')"
               >
                 <v-icon>mdi-chevron-double-down</v-icon>
@@ -324,11 +320,13 @@
 <script>
 import BaseNavbar from '@/components/BaseNavbar'
 import BaseContact from '@/components/BaseContact'
+import BaseCarousel from '@/components/BaseCarousel'
 export default {
   name: 'App',
   components: {
     BaseNavbar,
     BaseContact,
+    BaseCarousel
   },
   data (){ 
     return {
@@ -337,38 +335,50 @@ export default {
     articles: [
       
           {
-            src: '/img-boolean/Boolflix.png',
-            src_h: '/img-boolean/Boolflix-h.png',
+            src: [
+              '/img-boolean/Boolflix.png',
+              '/img-boolean/Boolflix-h.png'
+            ],
             title: 'Boolflix',
             //text: 'Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus dictum.',
           },
           {
-            src: '/img-boolean/boolzapp.png',
-            src_h: '/img-boolean/boolzapp-h.png',
+            src: [
+              '/img-boolean/boolzapp.png',
+              '/img-boolean/boolzapp-h.png',
+            ],
             title: 'Boolzapp',
             //text: 'Nam ut leo ipsum. Maecenas pretium aliquam feugiat. Aenean vel tempor est, vitae tincidunt risus. Sed sodales vestibulum nibh.',
           },
           {
-            src: '/img-boolean/hubspot.png',
-            src_h: '/img-boolean/hubspot-h.png',
+            src: [
+              '/img-boolean/hubspot.png',
+              '/img-boolean/hubspot-h.png',
+            ],
             title: 'HubSpot',
             //text: 'Vestibulum in dictum velit, in rhoncus nibh. Maecenas neque libero, interdum a dignissim in, aliquet vitae lectus. Phasellus lorem enim, luctus ut velit eget.',
           },
           {
-            src: '/img-boolean/spotify.png',
-            src_h: '/img-boolean/spotify-h.png',
+            src: [ 
+            '/img-boolean/spotify.png',
+            '/img-boolean/spotify-h.png',
+            ],
             title: 'Spotify',
             //text: 'Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus dictum.',
           },
           {
-            src: '/img-boolean/helbiz.png',
-            src_h: '/img-boolean/helbiz-h.png',
+            src: [
+              '/img-boolean/helbiz.png',
+              '/img-boolean/helbiz-h.png',
+            ],
             title: 'Helbiz',
             //text: 'Nam ut leo ipsum. Maecenas pretium aliquam feugiat. Aenean vel tempor est, vitae tincidunt risus. Sed sodales vestibulum nibh.',
           },
           {
-            src: '/img-boolean/digitalOcean.png',
-            src_h: '/img-boolean/digitalOcean-h.png',
+            src: [ 
+            '/img-boolean/digitalOcean.png',
+            '/img-boolean/digitalOcean-h.png',
+            ],
             title: 'DigitalOcean',
             //text: 'Vestibulum in dictum velit, in rhoncus nibh. Maecenas neque libero, interdum a dignissim in, aliquet vitae lectus. Phasellus lorem enim, luctus ut velit eget.',
           },
@@ -422,20 +432,6 @@ export default {
   }
 
 </script>
-<style lang="scss">
-@import 'scss/App.scss'; 
-
-//Background 
-$b-primary: '#ff0000';//'#c4d2ddee';
-$b-complementary: '#ddcfc4ee';
-$b-triadic-1: '#d2ddc4ee';
-$b-triadic-2: '#ddc4d2ee';
-$b-semidark: '#333';
-$b-dark: '#171718';
-$b-footer: '#000';
-
-//Text
-$f-clear: '#fdfdfd';
-$f-dark: '#171718';
-$f-semidark: '#333';
+<style lang="scss" scoped>
+@import './scss/App.scss';
 </style>
