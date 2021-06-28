@@ -6,6 +6,8 @@ import vuetify from './plugins/vuetify'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
 import 'font-awesome/css/font-awesome.css'
 import Vuelidate from 'vuelidate'
+import VueClipboards from 'vue-clipboards'
+Vue.use(VueClipboards)
 Vue.use(Vuelidate)
 
 Vue.config.productionTip = false

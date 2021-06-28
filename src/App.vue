@@ -95,62 +95,13 @@
             </div>
           </v-responsive>
 
-          <v-avatar
+          <v-avatar v-for="(icon, index) in icons" :key="index"
             class="code-icon elevation-12 mb-12 mx-5"
             size="90"
           >
-            <i class="fab fa-html5"></i>
+            <i :class="icon"></i>
           </v-avatar>
 
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-css3-alt"></i>
-          </v-avatar>
-
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-vuejs"></i>
-          </v-avatar>
-
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-js-square"></i>
-          </v-avatar>
-
-
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-sass"></i>
-          </v-avatar>
-          
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-wordpress"></i>
-          </v-avatar>
-
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-laravel"></i>
-          </v-avatar>
-
-          <v-avatar
-            class="code-icon elevation-12 mb-12 mx-5"
-            size="90"
-          >
-            <i class="fab fa-php"></i>
-          </v-avatar>
           <div></div>
 
           <v-row>
@@ -193,7 +144,7 @@
 
           <v-row>
             <v-col
-              v-for="({ src, src_h, text, title }, i) in articles"
+              v-for="({ src, src_h, text, title, ex_url }, i) in articles"
               :key="i"
               cols="12"
               md="4"
@@ -213,9 +164,12 @@
               ></div>
               -->
               <v-btn
+                fab
                 class="mb-4 font-weight-black"
                 :color="colors.$f_clear"
                 text
+                :href="ex_url"
+                target="_blank"
               >
                 <i class="fas fa-external-link-alt"></i>
               </v-btn>
@@ -274,10 +228,14 @@
         </v-parallax>
       </section>
 
-      <v-sheet id="contact" dark tag="section" tile>
+      <v-sheet id="contact"
+        dark 
+        tag="section" 
+        tile
+      >
         <div class="py-12"></div>
 
-        <v-container>
+        <v-container class="form">
           <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">Contatti</h2>
 
           <v-responsive
@@ -303,21 +261,59 @@
       id="footer"
       class="justify-center"
       min-height="100"
+      padless
     >
-      <div id="contacts" class="title font-weight-light text-center">
-        <ul class="contacts-list">
-          <li>
-            <i class="far fa-envelope"></i>
-            <v-btn class="contact" dark>andrea.mazza84@gmail.com</v-btn>
-          </li>
-          <li>
-            <i class="fas fa-phone"></i>
-            <v-btn class="contact" dark>+39 329 86 29 509</v-btn>
-          </li>
-          <li><v-btn fab dark><i class="fab fa-linkedin"></i></v-btn> | <v-btn fab dark><i class="fab fa-github"></i></v-btn></li>
-          <li><v-btn fab dark @click="$vuetify.goTo('#hero')"><i class="fas fa-chevron-up"></i></v-btn></li>
-        </ul>
-      </div>
+      <v-container>
+        <div id="contacts" class="title font-weight-light text-center">
+          <ul class="contacts-list">
+            <li>
+              <div 
+                class="contact-button" 
+                v-clipboard="contact.email" 
+              >
+                <v-btn
+                  dark
+                  :loading="loading"
+                  :disabled="loading"
+                  @click="loader = 'loading'"
+                >
+                
+                  <i class="far fa-envelope"></i> | andrea.mazza84@gmail.com
+                  <template v-slot:loader>
+                    <span>Copiato!</span>
+                  </template>
+                </v-btn>
+              </div>
+            </li>
+            <li>
+              <div 
+                class="contact-button" 
+                v-clipboard="contact.phone" 
+              >
+                <v-btn
+                  dark
+                  :loading="loading2"
+                  :disabled="loading2"
+                  @click="loader = 'loading2'"
+                >
+                
+                  <i class="fas fa-phone"></i> | +39 329 86 29 509
+                  <template v-slot:loader>
+                    <span>Copiato!</span>
+                  </template>
+                </v-btn>
+              </div>
+            </li>
+            <li>
+              <div class="social">
+                <v-btn fab dark href="https://www.linkedin.com/in/anmazza/" target="_blank"><i class="fab fa-linkedin"></i></v-btn>  
+                <v-btn fab dark href="https://github.com/andreamazza84/" target="_blank"><i class="fab fa-github"></i></v-btn>
+              </div>
+            </li>
+            <li><v-btn class="arrow-up" fab dark @click="$vuetify.goTo('#hero')"><i class="fas fa-chevron-up"></i></v-btn></li>
+          </ul>
+        </div>
+      </v-container>
       <div class="copy">&copy; Copyright {{ (new Date()).getFullYear() }} - Andrea Mazza</div>
     </v-footer>
   </v-app>
@@ -338,14 +334,21 @@ export default {
     return {
     counter: -1,
     src_img: '',
+    loader: null,
+    loading: false,
+    loading2: false,
+    contact:{
+      email: 'andrea.mazza84@gmail.com',
+      phone: '+393298629509'
+    },
     articles: [
-      
           {
             src: [
               '/img-boolean/Boolflix.png',
               '/img-boolean/Boolflix-h.png'
             ],
             title: 'Boolflix',
+            ex_url:'https://andreamazza84.github.io/boolflix/',
             //text: 'Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus dictum.',
           },
           {
@@ -354,6 +357,7 @@ export default {
               '/img-boolean/boolzapp-h.png',
             ],
             title: 'Boolzapp',
+            ex_url:'https://andreamazza84.github.io/vue-boolzapp/',
             //text: 'Nam ut leo ipsum. Maecenas pretium aliquam feugiat. Aenean vel tempor est, vitae tincidunt risus. Sed sodales vestibulum nibh.',
           },
           {
@@ -362,6 +366,7 @@ export default {
               '/img-boolean/hubspot-h.png',
             ],
             title: 'HubSpot',
+            ex_url:'https://andreamazza84.github.io/htmlcss-hubspot/',
             //text: 'Vestibulum in dictum velit, in rhoncus nibh. Maecenas neque libero, interdum a dignissim in, aliquet vitae lectus. Phasellus lorem enim, luctus ut velit eget.',
           },
           {
@@ -370,6 +375,7 @@ export default {
             '/img-boolean/spotify-h.png',
             ],
             title: 'Spotify',
+            ex_url:'https://andreamazza84.github.io/html-css-spotifyweb/',
             //text: 'Phasellus lorem enim, luctus ut velit eget, convallis egestas eros. Sed ornare ligula eget tortor tempor, quis porta tellus dictum.',
           },
           {
@@ -378,6 +384,7 @@ export default {
               '/img-boolean/helbiz-h.png',
             ],
             title: 'Helbiz',
+            ex_url:'https://andreamazza84.github.io/html-css-helbiz/',
             //text: 'Nam ut leo ipsum. Maecenas pretium aliquam feugiat. Aenean vel tempor est, vitae tincidunt risus. Sed sodales vestibulum nibh.',
           },
           {
@@ -386,6 +393,7 @@ export default {
             '/img-boolean/digitalOcean-h.png',
             ],
             title: 'DigitalOcean',
+            ex_url:'https://andreamazza84.github.io/html-css-digitalocean/',
             //text: 'Vestibulum in dictum velit, in rhoncus nibh. Maecenas neque libero, interdum a dignissim in, aliquet vitae lectus. Phasellus lorem enim, luctus ut velit eget.',
           },
         ],
@@ -412,6 +420,16 @@ export default {
           ['1m', 'Downloads/mo'],
           ['5m', 'Total Downloads'],
         ],
+        icons: [
+          'fab fa-html5',
+          'fab fa-css3-alt',
+          'fab fa-vuejs',
+          'fab fa-js-square',
+          'fab fa-sass',
+          'fab fa-wordpress',
+          'fab fa-laravel',
+          'fab fa-php'
+        ],
         colors: {
           $b_primary: '#c4d2ddee',
           $b_complementary: '#ddcfc4ee',
@@ -428,6 +446,14 @@ export default {
           $f_semidark: '#333',
         }
       }
+    },
+    watch: {
+      loader () {
+        const l = this.loader
+        this[l] = !this[l]
+        setTimeout(() => (this[l] = false), 3000)
+        this.loader = null
+      },
     },
     methods:{
       hover: function(i){

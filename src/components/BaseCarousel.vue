@@ -5,8 +5,10 @@
         height="auto"
         :show-arrows="false"
         :progress="false"
+        :touch="{left: () => model++, right: () => model--}"
       >
         <v-carousel-item
+        class="borderRadious"
         v-for="(item,i) in items"
         :key="i"
         :src="item"
@@ -30,3 +32,8 @@
     },
   }
 </script>
+<style lang="scss" scoped>
+.borderRadious{
+  border-radius: 5px;
+}
+</style>
