@@ -12,4 +12,6 @@ module.exports = {
       },
     }
   },
+
+  publicPath: "/docs/"
 }
