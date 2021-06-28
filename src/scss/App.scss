@@ -1,44 +1,28 @@
-
-//Background 
-$b-primary: #c4d2ddee;
-$b-complementary: #ddcfc4ee;
-$b-triadic-1: #d2ddc4ee;
-$b-triadic-2: #ddc4d2ee;
-$b-mild: #2B3C4A;
-$b-dark: #171718;
-$b-footer: #000;
-
-//Text
-$f-clear: #fdfdfd;
-$f-dark: #171718;
-$f-mild: #2B3C4A;
-$f-semidark: #333;
-
 #navbar{
-  background-color: $b-primary;
+  background-color: $b_primary;
 }
 #about-me{
-  background-color: $b-primary;
-  color: $f-mild;
+  background-color: $b_primary;
+  color: $f_mild;
   min-height: calc(100vh - 100px);
 }
 #features{
-  background-color: $b-mild;
-  color: $f-clear;
+  background-color: $b_mild;
+  color: $f_clear;
   min-height: calc(100vh - 100px);
 }
 #portfolio{
-  background-color: $b-mild;
-  color: $f-clear;
+  background-color: $b_mild;
+  color: $f_clear;
   min-height: calc(100vh - 100px);
   }
 #contact{
-  background-color: $b-mild;
-  color: $f-clear;
+  background-color: $b_mild;
+  color: $f_clear;
 }
 #footer{
-    color: $b-primary;
-    background-color: $b-dark;
+    color: $b_primary;
+    background-color: $b_dark;
 }
 
 .biografy{
@@ -70,8 +54,8 @@ $f-semidark: #333;
   }
 }
 .code-icon{
-  background-color: $b-mild;
-  color: $f-clear;
+  background-color: $b_mild;
+  color: $f_clear;
   transition: all 0.3s;
   &:hover, &:focus{
     transform: translateY(-12px);
@@ -81,7 +65,7 @@ $f-semidark: #333;
   }
 }
 .btn-submit{
-  background-color: $b-triadic-2 !important;
+  background-color: $b_triadic_2 !important;
 }
 
 .project{
@@ -94,15 +78,18 @@ $f-semidark: #333;
     display: flex;
     list-style: none;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-around;
     font-size: 1rem;
     li{
-      flex-basis: calc(100%/3);
-      min-width: 240px;
+      flex-basis: auto;
+      min-width: 300px;
       padding: 25px 0;
       text-align: center;
       i{
         padding-right: 2%;
+      }
+      .contact{
+        min-height: 56px;
       }
     }
   }

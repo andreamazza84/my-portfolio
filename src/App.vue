@@ -199,9 +199,7 @@
               md="4"
             >
            
-            <BaseCarousel
-              :items="src"
-            />
+            <BaseCarousel :items="src"/>
 
               <h3
                 class="font-weight-black mt-6 text-uppercase"
@@ -216,7 +214,7 @@
               -->
               <v-btn
                 class="mb-4 font-weight-black"
-                color="#fdfdfd"
+                :color="colors.$f_clear"
                 text
               >
                 <i class="fas fa-external-link-alt"></i>
@@ -231,7 +229,7 @@
                 class="align-self-end justify-center"
                 fab
                 outlined
-                color="#fdfdfd"
+                :color="colors.$f_clear"
                 @click="$vuetify.goTo('#contact')"
               >
                 <v-icon>mdi-chevron-double-down</v-icon>
@@ -308,11 +306,19 @@
     >
       <div id="contacts" class="title font-weight-light text-center">
         <ul class="contacts-list">
-          <li><i class="far fa-envelope"></i>andrea.mazza84@gmail.com</li>
-          <li><i class="fas fa-phone"></i>+39 329 86 29 509 </li>
-          <li>&copy; Copyright {{ (new Date()).getFullYear() }} - Andrea Mazza</li>
+          <li>
+            <i class="far fa-envelope"></i>
+            <v-btn class="contact" dark>andrea.mazza84@gmail.com</v-btn>
+          </li>
+          <li>
+            <i class="fas fa-phone"></i>
+            <v-btn class="contact" dark>+39 329 86 29 509</v-btn>
+          </li>
+          <li><v-btn fab dark><i class="fab fa-linkedin"></i></v-btn> | <v-btn fab dark><i class="fab fa-github"></i></v-btn></li>
+          <li><v-btn fab dark @click="$vuetify.goTo('#hero')"><i class="fas fa-chevron-up"></i></v-btn></li>
         </ul>
       </div>
+      <div class="copy">&copy; Copyright {{ (new Date()).getFullYear() }} - Andrea Mazza</div>
     </v-footer>
   </v-app>
 </template>
@@ -407,16 +413,19 @@ export default {
           ['5m', 'Total Downloads'],
         ],
         colors: {
-          background:{
-            primary: '#c4d2ddee',
-            complementary: '#ddcfc4ee',
-            triadic: '#d2ddc4ee',
-            dark: '#171718'
-          },
-          font:{
-            clear: '#fdfdfd',
-            dark: '#171718'
-          }
+          $b_primary: '#c4d2ddee',
+          $b_complementary: '#ddcfc4ee',
+          $b_triadic_1: '#d2ddc4ee',
+          $b_triadic_2: '#ddc4d2ee',
+          $b_mild: '#2B3C4A',
+          $b_dark: '#171718',
+          $b_footer: '#000',
+
+          //Text
+          $f_clear: '#fdfdfd',
+          $f_dark: '#171718',
+          $f_mild: '#2B3C4A',
+          $f_semidark: '#333',
         }
       }
     },
@@ -427,11 +436,11 @@ export default {
       },
       blur: function(){
         this.counter = -1;
-      }
+      },
     }
   }
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 @import './scss/App.scss';
 </style>
