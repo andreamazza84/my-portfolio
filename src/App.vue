@@ -344,8 +344,8 @@ export default {
     articles: [
           {
             src: [
-              '/img-boolean/Boolflix.png',
-              '/img-boolean/Boolflix-h.png'
+              './img-boolean/Boolflix.png',
+              './img-boolean/Boolflix-h.png'
             ],
             title: 'Boolflix',
             ex_url:'https://andreamazza84.github.io/boolflix/',
@@ -353,8 +353,8 @@ export default {
           },
           {
             src: [
-              '/img-boolean/boolzapp.png',
-              '/img-boolean/boolzapp-h.png',
+              './img-boolean/boolzapp.png',
+              './img-boolean/boolzapp-h.png',
             ],
             title: 'Boolzapp',
             ex_url:'https://andreamazza84.github.io/vue-boolzapp/',
@@ -362,8 +362,8 @@ export default {
           },
           {
             src: [
-              '/img-boolean/hubspot.png',
-              '/img-boolean/hubspot-h.png',
+              './img-boolean/hubspot.png',
+              './img-boolean/hubspot-h.png',
             ],
             title: 'HubSpot',
             ex_url:'https://andreamazza84.github.io/htmlcss-hubspot/',
@@ -371,8 +371,8 @@ export default {
           },
           {
             src: [ 
-            '/img-boolean/spotify.png',
-            '/img-boolean/spotify-h.png',
+            './img-boolean/spotify.png',
+            './img-boolean/spotify-h.png',
             ],
             title: 'Spotify',
             ex_url:'https://andreamazza84.github.io/html-css-spotifyweb/',
@@ -380,8 +380,8 @@ export default {
           },
           {
             src: [
-              '/img-boolean/helbiz.png',
-              '/img-boolean/helbiz-h.png',
+              './img-boolean/helbiz.png',
+              './img-boolean/helbiz-h.png',
             ],
             title: 'Helbiz',
             ex_url:'https://andreamazza84.github.io/html-css-helbiz/',
@@ -389,8 +389,8 @@ export default {
           },
           {
             src: [ 
-            '/img-boolean/digitalOcean.png',
-            '/img-boolean/digitalOcean-h.png',
+            './img-boolean/digitalOcean.png',
+            './img-boolean/digitalOcean-h.png',
             ],
             title: 'DigitalOcean',
             ex_url:'https://andreamazza84.github.io/html-css-digitalocean/',
