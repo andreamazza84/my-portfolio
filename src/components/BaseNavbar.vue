@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="Header">
     <v-app-bar 
       id="navbar" 
       app 
@@ -34,10 +34,10 @@
         <v-icon>mdi-chevron-double-up</v-icon>
       </v-btn>
       <!-- Script required-->
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="menuToggle()"></v-app-bar-nav-icon>
       <!-- Script required-->
     </v-app-bar>
-    <baseHamburger :drawer="drawer"/> 
+    <baseHamburger/> 
   </div>
 </template>
 
@@ -46,6 +46,11 @@ import BaseHamburger from '@/components/BaseHamburger.vue'
   export default {
     components:{
       BaseHamburger
+    },
+    methods:{
+      menuToggle: function(){
+        const result = this.$store.dispatch('menuToggle');
+      },
     },
     data: () => ({
       drawer: false,

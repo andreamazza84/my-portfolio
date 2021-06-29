@@ -5,10 +5,17 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    drawer: false,
   },
   mutations: {
+    SET_DRAWER(state){
+      state.drawer = !state.drawer;
+    }
   },
   actions: {
+    menuToggle( {commit} ){
+      return commit('SET_DRAWER')
+    }
   },
   modules: {
   }

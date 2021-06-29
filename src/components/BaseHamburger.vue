@@ -1,52 +1,70 @@
 <template>
-  <v-card
-    class="mx-auto"
-    height="100vh"
-    width="100vw"
-  >
     <v-navigation-drawer
       v-model="drawer"
       absolute
-      dark
-      color="#222222AA"
-      
-      width="100%"
       temporary
-      right
+      width="100%"
+      height="100%"
     >
-      <v-list>
+      <v-list dense>
         <v-list-item
-          v-for="([icon, text], i) in items"
-          :key="i"
+          v-for="item in items"
+          :key="item.title"
           link
         >
           <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ text }}</v-list-item-title>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-icon class="close-menu"
+        fab
+        @click="menuToggle()"
+      >
+      X
+      </v-icon>
     </v-navigation-drawer>
-  </v-card>
 </template>
 
 <script>
   export default {
-    props: {
-      drawer: {
-        type: Boolean,
-        required: true
+    computed:{
+      drawer: { 
+        get: function(){
+          let drawer = false;
+          return drawer = this.$store.state.drawer;
+        },
+        set: function(){
+          let drawer = false;
+          return drawer = this.$store.state.drawer;
+        },
       },
     },
-    data: () => ({
-      items: [
-        ['mdi-email', 'Inbox'],
-        ['mdi-account-supervisor-circle', 'Supervisors'],
-        ['mdi-clock-start', 'Clock-in'],
-      ],
-    }),
+    methods:{
+      menuToggle: function(){
+        const result = this.$store.dispatch('menuToggle');
+      },
+
+    },
+    data (){
+      return{
+        items: [
+          { title: 'Home', icon: 'mdi-view-dashboard' },
+          { title: 'About', icon: 'mdi-forum' },
+        ],
+      }
+    },
   }
 </script>
+<style lang="scss" scoped>
+  .close-menu{
+    position: absolute;
+    left: 30px;
+    top: 30px;
+    //z-index: 6;
+  }
+</style>
