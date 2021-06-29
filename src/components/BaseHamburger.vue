@@ -1,33 +1,44 @@
 <template>
-    <v-navigation-drawer
+  
+    <v-menu
       v-model="drawer"
       absolute
-      temporary
-      width="100%"
-      height="100%"
+      attach="#app"
+      :close-on-content-click="true"
+      min-width="100%"
     >
-      <v-list dense>
-        <v-list-item
-          v-for="item in items"
-          :key="item.title"
-          link
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list>
-      <v-icon class="close-menu"
-        fab
-        @click="menuToggle()"
+      <v-card
+        color="#222222dd"
+        rounded="0"
+        height="100vh"
+        width="100%"
       >
-      X
-      </v-icon>
-    </v-navigation-drawer>
+        <v-list>
+          <v-list-item class="align-self-right" @click="menuToggle()" width="100%">
+            <v-list-item-icon>
+              <i class="fas fa-times"></i>
+            </v-list-item-icon>
+            <v-list-item-content>
+              <v-list-item-title>Chiudi</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+          <v-list-item
+            v-for="item in items"
+            :key="item.title"
+            link
+            @click="$vuetify.goTo(item.slug)"
+          >
+            <v-list-item-icon>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-item-icon>
+
+            <v-list-item-content>
+              <v-list-item-title>{{ item.title }}</v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </v-list>
+      </v-card>
+    </v-menu>
 </template>
 
 <script>
@@ -53,8 +64,8 @@
     data (){
       return{
         items: [
-          { title: 'Home', icon: 'mdi-view-dashboard' },
-          { title: 'About', icon: 'mdi-forum' },
+          { title: 'Home', icon: 'mdi-view-dashboard', slug: '#hero'},
+          { title: 'About', icon: 'mdi-forum', slug: '#about-me' },
         ],
       }
     },
@@ -63,7 +74,7 @@
 <style lang="scss" scoped>
   .close-menu{
     position: absolute;
-    left: 30px;
+    right: 30px;
     top: 30px;
     //z-index: 6;
   }
