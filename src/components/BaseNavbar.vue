@@ -8,7 +8,7 @@
       <v-img
         contain
         max-height="100%"
-        src="/img/logo.png"
+        src="@/assets/img/logo.png"
       ></v-img>
     </v-avatar>
 
