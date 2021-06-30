@@ -1,65 +1,70 @@
 <template>
-  <v-row>
-    <v-col>
-      <v-text-field
-        class="form-input"
-        flat
-        label="Nome*"
-        solo
-        :error-messages="nameErrors"
-        @input="$v.name.$touch()"
-        @blur="$v.name.$touch()"
-      ></v-text-field>
-    </v-col>
+  <v-form
+    action="https://formsubmit.co/andrea.mazza84@gmail.com"
+    method="POST"
+  >
+    <v-row>
+      <v-col>
+        <v-text-field
+          class="form-input"
+          flat
+          label="Nome*"
+          solo
+          :error-messages="nameErrors"
+          @input="$v.name.$touch()"
+          @blur="$v.name.$touch()"
+        ></v-text-field>
+      </v-col>
 
-    <v-col cols="12">
-      <v-text-field
-        class="form-input"
-        flat
-        label="Email*"
-        solo
-        :error-messages="emailErrors"
-        @input="$v.email.$touch()"
-        @blur="$v.email.$touch()"
-      ></v-text-field>
-    </v-col>
+      <v-col cols="12">
+        <v-text-field
+          class="form-input"
+          flat
+          label="Email*"
+          solo
+          :error-messages="emailErrors"
+          @input="$v.email.$touch()"
+          @blur="$v.email.$touch()"
+        ></v-text-field>
+      </v-col>
 
-    <v-col cols="12">
-      <v-text-field
-        class="form-input"
-        flat
-        label="Oggetto*"
-        solo
-        :error-messages="objectErrors"
-        @input="$v.object.$touch()"
-        @blur="$v.object.$touch()"
-      ></v-text-field>
-    </v-col>
+      <v-col cols="12">
+        <v-text-field
+          class="form-input"
+          flat
+          label="Oggetto*"
+          solo
+          :error-messages="objectErrors"
+          @input="$v.object.$touch()"
+          @blur="$v.object.$touch()"
+        ></v-text-field>
+      </v-col>
 
-    <v-col cols="12">
-      <v-textarea
-        class="form-input"
-        flat
-        label="Scrivi qua*"
-        solo
-        :error-messages="textErrors"
-        @input="$v.text.$touch()"
-        @blur="$v.text.$touch()"
-      ></v-textarea>
-    </v-col>
+      <v-col cols="12">
+        <v-textarea
+          class="form-input"
+          flat
+          label="Scrivi qua*"
+          solo
+          :error-messages="textErrors"
+          @input="$v.text.$touch()"
+          @blur="$v.text.$touch()"
+        ></v-textarea>
+      </v-col>
 
-    <v-col
-      class="mx-auto"
-      cols="auto"
-    >
-      <v-btn 
-        class="btn-submit"
-        x-large
+      <v-col
+        class="mx-auto"
+        cols="auto"
       >
-        Invia
-      </v-btn>
-    </v-col>
-  </v-row>
+        <v-btn 
+          class="btn-submit"
+          x-large
+        >
+          Invia
+        </v-btn>
+      </v-col>
+    </v-row>
+  </v-form>
 </template>
 <script>
   import { validationMixin } from 'vuelidate'
@@ -144,3 +149,9 @@
     },
   }
 </script>
+<style lang="scss" scoped>
+  .btn-submit{
+    background-color: $b_triadic_2 !important;
+    color: $f_dark !important;
+  }
+</style>

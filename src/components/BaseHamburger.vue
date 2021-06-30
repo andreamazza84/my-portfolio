@@ -14,17 +14,24 @@
         width="100%"
         height="100%"
         rounded="0"
-        class="justify-center"
         color="transparent"
       >
         <v-list
           width="100%"
           height="100%"
           color="#000000cc"
+          class="justify-center pt-15"
         >
-          <v-list-item @click="menuToggle()" width="100%">
-            <v-list-item-content class="fa-times-btn"><i class="fas fa-times"></i></v-list-item-content>
-          </v-list-item>
+          <v-btn
+            absolute
+            top
+            right
+            fab 
+            @click="menuToggle()" 
+            class="fa-times-btn"
+          >
+            <i class="fas fa-times"></i>
+          </v-btn>
           <v-list-item
             class="list-item"
             v-for="item in items"
@@ -75,13 +82,15 @@
   }
 </script>
 <style lang="scss">
-.drawer{
-  font-family: 'Roboto Slab', serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;400;500&display=swap');
+.v-dialog__content{
+  font-family: 'Roboto Slab', serif !important;
 }
 .v-list-item{
   font-size: 2rem;
-  width: 80%;
+  width: max-content;
   min-width: max-content;
+  padding: inherit 1rem;
   margin: auto;
   text-align: center;
   .v-list-item__title{
@@ -91,7 +100,9 @@
     text-align: right;
   }
 }
-.fa-times-btn:hover::before{
-  opacity: 0;
+.fa-times-btn{
+  top: 1rem !important;
+  right: 1rem !important; 
+  font-size: 1.5rem !important;
 }
 </style>

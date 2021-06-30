@@ -1,5 +1,3 @@
-const path = require('path');
-console.log(path);
 module.exports = {
   lintOnSave: false,
 
@@ -16,6 +14,6 @@ module.exports = {
   },
 
   publicPath: process.env.NODE_ENV === 'production'
-    ? '/personale/docs/'
-    : '/personale/'
+    ? '/personale/'
+    : '/personale/docs/'
 }
