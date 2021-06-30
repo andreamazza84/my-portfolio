@@ -1,6 +1,6 @@
 <template>
   <form
-    action="https://formsubmit.co/andrea.mazza84@gmail.com"
+    action="https://formsubmit.co/a263761003a53d0d3b44000bb483e046"
     method="POST"
   >
     <v-row>
@@ -26,7 +26,7 @@
           @input="$v.email.$touch()"
           @blur="$v.email.$touch()"
         ></v-text-field>
-        <input type="hidden" name="_next" value="http://localhost:8080/personale/message-sent/">
+        <input type="hidden" name="_next" :value="this.$store.state.baseURL + 'message-sent/'">
       </v-col>
 
       <v-col cols="12">

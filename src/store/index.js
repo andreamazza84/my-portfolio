@@ -6,6 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     drawer: false,
+    baseURL: 'https://andreamazza84.github.io/personale/',
+    //baseURL: 'http://localhost:8080/personale/'
   },
   mutations: {
     SET_DRAWER(state){
