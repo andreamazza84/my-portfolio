@@ -19,23 +19,15 @@
         ></v-img>
       </v-avatar>
 
-      <v-toolbar-title class="font-weight-black headline">
+      <!-- <v-toolbar-title class="font-weight-black headline">
         PORTFOLIO
-      </v-toolbar-title>
+      </v-toolbar-title> -->
       <v-spacer></v-spacer>
-        <v-btn plain @click="$vuetify.goTo('#about-me')">about</v-btn>
-        <v-btn plain @click="$vuetify.goTo('#portfolio')">portfolio</v-btn>
-        <v-btn plain @click="$vuetify.goTo('#contact')">contatti</v-btn>
-      <v-btn
-        fab
-        plain
-        @click="$vuetify.goTo('#hero')"
-      >
-        <v-icon>mdi-chevron-double-up</v-icon>
-      </v-btn>
-      <!-- Script required-->
-      <v-app-bar-nav-icon @click="menuToggle()"></v-app-bar-nav-icon>
-      <!-- Script required-->
+        <v-app-bar-nav-icon @click="$vuetify.goTo('#hero')"><v-icon>mdi-chevron-double-up</v-icon></v-app-bar-nav-icon>
+        <v-btn plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#about-me')">about</v-btn>
+        <v-btn plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#portfolio')">portfolio</v-btn>
+        <v-btn plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#contact')">contatti</v-btn>
+        <v-app-bar-nav-icon class="d-flex d-sm-none" @click="menuToggle()"></v-app-bar-nav-icon>
     </v-app-bar>
     <baseHamburger/> 
   </div>
@@ -58,3 +50,4 @@ import BaseHamburger from '@/components/BaseHamburger.vue'
     }),
   }
 </script>
+

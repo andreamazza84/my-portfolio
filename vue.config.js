@@ -1,3 +1,5 @@
+const path = require('path');
+console.log(path);
 module.exports = {
   lintOnSave: false,
 

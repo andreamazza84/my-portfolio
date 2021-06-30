@@ -1,44 +1,45 @@
 <template>
-  
-    <v-menu
+  <div class="drawer text-center">
+    <v-dialog
       v-model="drawer"
-      absolute
       attach="#app"
       :close-on-content-click="true"
-      min-width="100%"
+      fullscreen
+      hide-overlay
+      dark      
+      transition="fade-transition"
+      color="transparent"
     >
       <v-card
-        color="#222222dd"
-        rounded="0"
-        height="100vh"
         width="100%"
+        height="100%"
+        rounded="0"
+        class="justify-center"
+        color="transparent"
       >
-        <v-list>
-          <v-list-item class="align-self-right" @click="menuToggle()" width="100%">
-            <v-list-item-icon>
-              <i class="fas fa-times"></i>
-            </v-list-item-icon>
-            <v-list-item-content>
-              <v-list-item-title>Chiudi</v-list-item-title>
-            </v-list-item-content>
+        <v-list
+          width="100%"
+          height="100%"
+          color="#000000cc"
+        >
+          <v-list-item @click="menuToggle()" width="100%">
+            <v-list-item-content class="fa-times-btn"><i class="fas fa-times"></i></v-list-item-content>
           </v-list-item>
           <v-list-item
+            class="list-item"
             v-for="item in items"
             :key="item.title"
             link
-            @click="$vuetify.goTo(item.slug)"
+            @click="$vuetify.goTo(item.slug), menuToggle()"
           >
-            <v-list-item-icon>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-item-icon>
-
             <v-list-item-content>
               <v-list-item-title>{{ item.title }}</v-list-item-title>
             </v-list-item-content>
           </v-list-item>
         </v-list>
       </v-card>
-    </v-menu>
+    </v-dialog>
+  </div> 
 </template>
 
 <script>
@@ -66,16 +67,31 @@
         items: [
           { title: 'Home', icon: 'mdi-view-dashboard', slug: '#hero'},
           { title: 'About', icon: 'mdi-forum', slug: '#about-me' },
+          { title: 'Portfolio', icon: 'mdi-forum', slug: '#portfolio' },
+          { title: 'Contatti', icon: 'mdi-forum', slug: '#contact' },
         ],
       }
     },
   }
 </script>
-<style lang="scss" scoped>
-  .close-menu{
-    position: absolute;
-    right: 30px;
-    top: 30px;
-    //z-index: 6;
+<style lang="scss">
+.drawer{
+  font-family: 'Roboto Slab', serif;
+}
+.v-list-item{
+  font-size: 2rem;
+  width: 80%;
+  min-width: max-content;
+  margin: auto;
+  text-align: center;
+  .v-list-item__title{
+    font-size: 2rem;
   }
+  i{
+    text-align: right;
+  }
+}
+.fa-times-btn:hover::before{
+  opacity: 0;
+}
 </style>

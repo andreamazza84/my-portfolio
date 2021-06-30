@@ -56,7 +56,7 @@
         class="btn-submit"
         x-large
       >
-        Submit
+        Invia
       </v-btn>
     </v-col>
   </v-row>
