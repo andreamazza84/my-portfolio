@@ -34,6 +34,6 @@
 </script>
 <style lang="scss" scoped>
 .borderRadious{
-  border-radius: 5px;
+  border-radius: 5px !important;
 }
 </style>
