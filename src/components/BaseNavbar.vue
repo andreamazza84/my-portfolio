@@ -26,6 +26,7 @@
         PORTFOLIO
       </v-toolbar-title> -->
       <v-spacer></v-spacer>
+        <router-link to="/about">Prova</router-link>
         <v-app-bar-nav-icon x-large @click="$vuetify.goTo('#hero')"><v-icon>mdi-chevron-double-up</v-icon></v-app-bar-nav-icon>
         <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#about-me')">about</v-btn>
         <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#portfolio')">portfolio</v-btn>

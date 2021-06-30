@@ -1,5 +1,5 @@
 <template>
-  <v-form
+  <form
     action="https://formsubmit.co/andrea.mazza84@gmail.com"
     method="POST"
   >
@@ -26,6 +26,7 @@
           @input="$v.email.$touch()"
           @blur="$v.email.$touch()"
         ></v-text-field>
+        <input type="hidden" name="_next" value="http://localhost:8080/personale/about/">
       </v-col>
 
       <v-col cols="12">
@@ -56,7 +57,8 @@
         class="mx-auto"
         cols="auto"
       >
-        <v-btn 
+        <v-btn
+          type="submit" 
           class="btn-submit"
           x-large
         >
@@ -64,7 +66,7 @@
         </v-btn>
       </v-col>
     </v-row>
-  </v-form>
+  </form>
 </template>
 <script>
   import { validationMixin } from 'vuelidate'
@@ -89,12 +91,6 @@
       name: '',
       email: '',
       select: null,
-      items: [
-        'Item 1',
-        'Item 2',
-        'Item 3',
-        'Item 4',
-      ],
       checkbox: false,
     }),
 
