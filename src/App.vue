@@ -1,22 +1,18 @@
 <template>
   <v-app>
-    <!-- NAVBAR-->
-    <BaseNavbar/>
-    <!-- MAIN-->
-    <router-view id="main"/>
+    <!-- HEADER + MAIN-->
+    <router-view/>
     <!-- FOOTER-->
     <BaseFooter/>
   </v-app>
 </template>
 
 <script>
-import BaseNavbar from '@/components/BaseNavbar'
 import BaseFooter from '@/components/BaseFooter'
 
 export default {
   name: 'App',
   components: {
-    BaseNavbar,
     BaseFooter
   },
 }
