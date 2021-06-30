@@ -26,7 +26,7 @@
           @input="$v.email.$touch()"
           @blur="$v.email.$touch()"
         ></v-text-field>
-        <input type="hidden" name="_next" :value="this.$store.state.baseURL + 'message-sent/'">
+        <input type="hidden" name="_next" :value="this.$store.state.baseURL + 'message-sent'">
       </v-col>
 
       <v-col cols="12">
