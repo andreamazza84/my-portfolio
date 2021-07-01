@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     drawer: false,
     snackbar: false,
+    //Reindirizzamento a pagina form
     //baseURL: 'https://andreamazza84.github.io/personale/',
     baseURL: 'http://localhost:8080/personale/'
   },

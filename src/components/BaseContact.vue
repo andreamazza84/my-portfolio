@@ -178,18 +178,50 @@
     },
 
     methods: {
-      submit(message) {
+       submit() {
+        //Vuelidate
         this.$v.$touch();
+        //Form Spree
         //
-        axios.defaults.headers.post['Content-Type'] = 'application/json';
-        axios.post('https://formsubmit.co/ajax/a263761003a53d0d3b44000bb483e046', { message })
-        .then(response => console.log(response))
-        .catch(error => console.log(error));
+        //let formObj = this.message;
+        let formData = new FormData();
+        for(const index in this.message){
+          formData.append(index, this.message[index]);
+        }
+        //console.log(formData);
+        axios({
+          method: "post",
+          url: "https://formspree.io/f/mjvjoejl",
+          data: formData,
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then( response => {
+          //console.log(response);
+          //console.log(response.data.ok);
+          if(response.data.ok){
+            this.$store.dispatch('snackToggle');
+            console.log("Message sent ", response.data.ok);
+          }
+        })
+        .catch( error => {
+          console.log(error);
+        })
+        
         // 
-        this.success = this.$store.state.snackbar;
-        this.$store.dispatch('snackToggle');
-        console.log(this.success);
       },
+      // submit(message) {
+      //   //Form Submit
+      //   this.$v.$touch();
+      //   //
+      //   axios.defaults.headers.post['Content-Type'] = 'application/json';
+      //   axios.post('https://formsubmit.co/ajax/a263761003a53d0d3b44000bb483e046', { message })
+      //   .then(response => console.log(response))
+      //   .catch(error => console.log(error));
+      //   //
+      //   this.success = this.$store.state.snackbar;
+      //   this.$store.dispatch('snackToggle');
+      //   console.log("Message sent ",this.success);
+      // },
 
       clear () {
         this.$v.$reset()

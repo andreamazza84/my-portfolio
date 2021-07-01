@@ -30,8 +30,13 @@
       text: `Ciao ${name}! Grazie per il tuo messaggio`,
     }),
     computed:{
-      snackbar(){
-        return this.$store.state.snackbar; 
+      snackbar:{
+        get: function() {
+          return this.$store.state.snackbar; 
+        },
+        set: function() {
+          return this.$store.state.snackbar; 
+        }
       }
     },
     methods:{
