@@ -131,12 +131,12 @@
     data: () => ({
       success: false,
       message:{
-        name: 'Axios',
-        email: 'axios@axios.com',
+        name: '',
+        email: '',
         select: null,
-        text: 'Ciao axios',
-        object: 'Ciao ciao ciao',
-        checkbox: true,
+        text: '',
+        object: '',
+        checkbox: false,
       }
     }),
 
