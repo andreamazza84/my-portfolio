@@ -16,6 +16,7 @@ Vue.use(VueClipboards)
 Vue.use(Vuelidate)
 
 Vue.config.productionTip = false
+//Vue.axios.defaults.baseURL = 'http://localhost:8080/personale/docs/'
 
 new Vue({
   router,

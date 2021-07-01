@@ -1,9 +1,7 @@
 <template>
   <form
     id="contact-form"
-    action="https://formsubmit.co/a263761003a53d0d3b44000bb483e046"
-    method="POST"
-    @submit="submit()"
+    @submit.prevent="submit()"
   >
     <v-row>
       <v-col>
@@ -95,15 +93,25 @@
           Invia
         </v-btn>
       </v-col>
+
+      <BaseSnackbar :name="message.name"/>
+ 
     </v-row>
     <input type="text" name="_honey" style="display:none" class="hidden-input">
+    <input type="hidden" name="_captcha" value="false" class="hidden-input">
   </form>
 </template>
 <script>
   import { validationMixin } from 'vuelidate'
   import { required, maxLength, email } from 'vuelidate/lib/validators'
+  import axios from 'axios'
+  import BaseSnackbar from '@/components/BaseSnackbar'
 
   export default {
+    components:{
+      BaseSnackbar
+    },
+
     mixins: [validationMixin],
 
     validations: {
@@ -121,13 +129,14 @@
     },
 
     data: () => ({
+      success: false,
       message:{
-        name: '',
-        email: '',
+        name: 'Axios',
+        email: 'axios@axios.com',
         select: null,
-        text: '',
-        object: '',
-        checkbox: false,
+        text: 'Ciao axios',
+        object: 'Ciao ciao ciao',
+        checkbox: true,
       }
     }),
 
@@ -171,9 +180,17 @@
     methods: {
       submit(message) {
         this.$v.$touch();
-        
-        
+        //
+        axios.defaults.headers.post['Content-Type'] = 'application/json';
+        axios.post('https://formsubmit.co/ajax/a263761003a53d0d3b44000bb483e046', { message })
+        .then(response => console.log(response))
+        .catch(error => console.log(error));
+        // 
+        this.success = this.$store.state.snackbar;
+        this.$store.dispatch('snackToggle');
+        console.log(this.success);
       },
+
       clear () {
         this.$v.$reset()
         this.message.name = ''
