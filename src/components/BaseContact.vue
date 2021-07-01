@@ -60,11 +60,29 @@
         <v-checkbox
           v-model="message.checkbox"
           :error-messages="checkboxErrors"
-          label="Accetto termini e condizioni"
           required
           @change="$v.message.checkbox.$touch()"
           @blur="$v.message.checkbox.$touch()"
         >
+          <template v-slot:label>
+          <div>
+            Accetto l'informativa sull'utilizzo dei dati |
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <a
+                  target="_blank"
+                  href="https://www.iubenda.com/privacy-policy/91506390"
+                  @click.stop
+                  v-on="on"
+                >
+                 Privacy Policy 
+                </a>
+              </template>
+              Si apre in una nuova finestra.
+            </v-tooltip>
+          </div>
+      </template>
+        Ciao
         </v-checkbox>
       </v-col>
 
@@ -106,10 +124,12 @@
   import { required, maxLength, minLength, between, email } from 'vuelidate/lib/validators'
   import axios from 'axios'
   import BaseSnackbar from '@/components/BaseSnackbar'
+  import BasePolicy from '@/components/BasePolicy'
 
   export default {
     components:{
-      BaseSnackbar
+      BaseSnackbar,
+      BasePolicy
     },
 
     mixins: [validationMixin],
@@ -146,7 +166,7 @@
       success: false,
       submitStatus: '',
       message:{
-        name: 'ci',
+        name: '',
         email: '',
         select: null,
         text: '',
