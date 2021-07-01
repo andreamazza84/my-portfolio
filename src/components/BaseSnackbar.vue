@@ -3,7 +3,7 @@
     v-model="snackbar"
     elevation="10"
   >
-    {{ `Ciao ${this.name}! Grazie per il tuo messaggio` }}
+    {{ `Ciao ${username}! Grazie per il tuo messaggio` }}
      <template v-slot:action="{ attrs }">
       <v-btn
         light
@@ -35,6 +35,14 @@
         set: function() {
           return this.$store.state.snackbar; 
         }
+      },
+      username:{
+        get: function(){
+          return name
+        },
+        set: function(){
+          return name
+        }  
       }
     },
     methods:{
