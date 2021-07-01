@@ -65,24 +65,23 @@
           @blur="$v.message.checkbox.$touch()"
         >
           <template v-slot:label>
-          <div>
-            Accetto l'informativa sull'utilizzo dei dati |
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on }">
-                <a
-                  target="_blank"
-                  href="https://www.iubenda.com/privacy-policy/91506390"
-                  @click.stop
-                  v-on="on"
-                >
-                 Privacy Policy 
-                </a>
-              </template>
-              Si apre in una nuova finestra.
-            </v-tooltip>
-          </div>
-      </template>
-        Ciao
+            <div>
+              Accetto l'informativa sull'utilizzo dei dati |
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <a
+                    target="_blank"
+                    href="https://www.iubenda.com/privacy-policy/91506390"
+                    @click.stop
+                    v-on="on"
+                  >
+                  Privacy Policy 
+                  </a>
+                </template>
+                Si apre in una nuova finestra.
+              </v-tooltip>
+            </div>
+          </template>
         </v-checkbox>
       </v-col>
 
