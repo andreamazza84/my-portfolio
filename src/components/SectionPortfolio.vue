@@ -17,7 +17,16 @@
         class="mx-auto title font-weight-light mb-8 align-center"
         max-width="1140"
       >
-        <p class="subtitle">Alcuni dei lavori sviluppati durante il Corso Boolean Careers 2020/21</p>
+        <p class="subtitle">Alcuni dei lavori sviluppati durante il Corso 
+          <a href="https://www.credential.net/embed/f4a7bd32-021a-4d45-a2f7-5bbc22e787b3" target="_blank">Boolean Careers</a>
+        2020/21</p>
+        <!--  <iframe
+            src="https://www.credential.net/embed/f4a7bd32-021a-4d45-a2f7-5bbc22e787b3"
+            width="800"
+            height="600"
+            frameborder="0"
+            allowfullscreen>
+        </iframe> -->
       </v-responsive>
 
       <v-row>

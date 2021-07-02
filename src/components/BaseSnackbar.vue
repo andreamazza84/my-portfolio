@@ -3,9 +3,10 @@
     v-model="snackbar"
     elevation="10"
   >
-    {{ text }}
+    {{ `Ciao ${username}! Grazie per il tuo messaggio` }}
      <template v-slot:action="{ attrs }">
       <v-btn
+        light
         x-large
         color="green"
         text
@@ -26,9 +27,6 @@
         required: true,
       }
     },
-    data: () => ({
-      text: `Ciao ${name}! Grazie per il tuo messaggio`,
-    }),
     computed:{
       snackbar:{
         get: function() {
@@ -37,6 +35,14 @@
         set: function() {
           return this.$store.state.snackbar; 
         }
+      },
+      username:{
+        get: function(){
+          return name
+        },
+        set: function(){
+          return name
+        }  
       }
     },
     methods:{

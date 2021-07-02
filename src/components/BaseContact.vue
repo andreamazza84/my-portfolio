@@ -60,11 +60,28 @@
         <v-checkbox
           v-model="message.checkbox"
           :error-messages="checkboxErrors"
-          label="Accetto termini e condizioni"
           required
           @change="$v.message.checkbox.$touch()"
           @blur="$v.message.checkbox.$touch()"
         >
+          <template v-slot:label>
+            <div>
+              Accetto l'informativa sull'utilizzo dei dati |
+              <v-tooltip bottom>
+                <template v-slot:activator="{ on }">
+                  <a
+                    target="_blank"
+                    href="https://www.iubenda.com/privacy-policy/91506390"
+                    @click.stop
+                    v-on="on"
+                  >
+                  Privacy Policy 
+                  </a>
+                </template>
+                Si apre in una nuova finestra.
+              </v-tooltip>
+            </div>
+          </template>
         </v-checkbox>
       </v-col>
 
@@ -103,23 +120,39 @@
 </template>
 <script>
   import { validationMixin } from 'vuelidate'
-  import { required, maxLength, email } from 'vuelidate/lib/validators'
+  import { required, maxLength, minLength, between, email } from 'vuelidate/lib/validators'
   import axios from 'axios'
   import BaseSnackbar from '@/components/BaseSnackbar'
+  import BasePolicy from '@/components/BasePolicy'
 
   export default {
     components:{
-      BaseSnackbar
+      BaseSnackbar,
+      BasePolicy
     },
 
     mixins: [validationMixin],
 
     validations: {
       message: {
-        name: { required, maxLength: maxLength(30) },
-        email: { required, email },
-        object: { required },
-        text: { required },
+        name: { 
+          required, 
+          maxLength: maxLength(30), 
+          minLength: minLength(3)
+        },
+        email: { 
+          required, 
+          email 
+        },
+        object: { 
+          required, 
+          maxLength: maxLength(30),
+          minLength: minLength(3)
+        },
+        text: { 
+          required, 
+           minLength: minLength(20)  
+        },
         checkbox: {
           checked (val) {
             return val
@@ -130,87 +163,94 @@
 
     data: () => ({
       success: false,
+      submitStatus: '',
       message:{
-        name: 'Axios',
-        email: 'axios@axios.com',
+        name: '',
+        email: '',
         select: null,
-        text: 'Ciao axios',
-        object: 'Ciao ciao ciao',
-        checkbox: true,
+        text: '',
+        object: '',
+        checkbox: false,
       }
     }),
 
     computed: {
-      checkboxErrors () {
-        const errors = []
-        if (!this.$v.message.checkbox.$dirty) return errors
-        !this.$v.message.checkbox.checked && errors.push('Devi accettare le condizioni per continuare')
-        return errors
-      },
       nameErrors () {
         const errors = []
         if (!this.$v.message.name.$dirty) return errors
-        !this.$v.message.name.maxLength && errors.push('Richiesto')
+        !this.$v.message.name.maxLength && errors.push('Lunghezza massima 30 caratteri')
+        !this.$v.message.name.minLength && errors.push('Lunghezza minima 3 caratteri')
         !this.$v.message.name.required && errors.push('Richiesto')
+        return errors
+      },
+      emailErrors () {
+        const errors = []
+        if (!this.$v.message.email.$dirty) return errors
+        this.$v.message.email.maxLength && errors.push('Lunghezza massima 30 caratteri')
+        !this.$v.message.email.email && errors.push('Inserisci un indirizzo email valido')
+        !this.$v.message.email.required && errors.push('Richiesto')
         return errors
       },
       objectErrors () {
         const errors = []
         if (!this.$v.message.object.$dirty) return errors
-        !this.$v.message.object.maxLength && errors.push('Richiesto')
+        !this.$v.message.object.maxLength && errors.push('Lunghezza massima 30 caratteri')
+        !this.$v.message.object.minLength && errors.push('Lunghezza minima 3 caratteri')
         !this.$v.message.object.required && errors.push('Richiesto')
         return errors
       },
       textErrors () {
         const errors = []
         if (!this.$v.message.text.$dirty) return errors
-        !this.$v.message.text.maxLength && errors.push('Richiesto')
+        !this.$v.message.text.minLength && errors.push('Lunghezza minima 20 caratteri')
         !this.$v.message.text.required && errors.push('Richiesto')
         return errors
       },
-      emailErrors () {
+      checkboxErrors () {
         const errors = []
-        if (!this.$v.message.email.$dirty) return errors
-        !this.$v.message.email.email && errors.push('Inserisci un indirizzo email valido')
-        !this.$v.message.email.required && errors.push('Richiesto')
+        if (!this.$v.message.checkbox.$dirty) return errors
+        !this.$v.message.checkbox.checked && errors.push('Devi spuntare questa casella per continuare')
         return errors
       },
     },
 
     methods: {
+       checkName(){
+         this.$v.message.name.$touch(); 
+       },
+
        submit() {
         //Vuelidate
         this.$v.$touch();
-        //Form Spree
-        //
-        //let formObj = this.message;
-        let formData = new FormData();
-        for(const index in this.message){
-          formData.append(index, this.message[index]);
-        }
-        //console.log(formData);
-        axios({
-          method: "post",
-          url: "https://formspree.io/f/mjvjoejl",
-          data: formData,
-          headers: { "Content-Type": "multipart/form-data" },
-        })
-        .then( response => {
-          //console.log(response);
-          //console.log(response.data.ok);
-          if(response.data.ok){
-            this.$store.dispatch('snackToggle');
-            console.log("Message sent ", response.data.ok);
+        if (this.$v.$invalid) {
+          this.submitStatus = 'Submit Status Error - Vuelidate'
+          console.log(this.submitStatus);
+        } 
+        else {
+          //Formspree.io
+          let formData = new FormData();
+          for(const index in this.message){
+            formData.append(index, this.message[index]);
           }
-        })
-        .catch( error => {
-          console.log(error);
-        })
-        
-        // 
+          axios({
+            method: "post",
+            url: "https://formspree.io/f/mjvjoejl",
+            data: formData,
+            headers: { "Content-Type": "multipart/form-data" },
+          })
+          .then( response => {
+            if(response.data.ok){
+              this.$store.dispatch('snackToggle');
+              console.log("Message sent ", response.data.ok);
+            }
+          })
+          .catch( error => {
+            console.log(error);
+          })
+        } 
       },
       // submit(message) {
-      //   //Form Submit
+      //   //Form Submit -Template
       //   this.$v.$touch();
       //   //
       //   axios.defaults.headers.post['Content-Type'] = 'application/json';

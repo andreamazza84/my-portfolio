@@ -3,8 +3,8 @@
     <v-app-bar 
       id="navbar" 
       app 
-      height="100" 
-      elevate-on-scroll
+      height="80" 
+      elevate-on-scroll   
     >
 
       <v-avatar
