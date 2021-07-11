@@ -28,9 +28,16 @@
       <v-spacer></v-spacer>
         <!-- <router-link :to="{ name: 'PageThanks'}">Prova</router-link> -->
         <v-app-bar-nav-icon x-large @click="$vuetify.goTo('#hero')"><v-icon>mdi-chevron-double-up</v-icon></v-app-bar-nav-icon>
-        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#about-me')">about</v-btn>
+        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#about-me')">
+          <span v-if="!this.$store.state.switch">su-di-me</span>
+          <span v-else>about</span>
+        </v-btn>
         <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#portfolio')">portfolio</v-btn>
-        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#contact')">contatti</v-btn>
+        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#contact')">
+          <span v-if="!this.$store.state.switch">contatti</span>
+          <span v-else>contacts</span>
+        </v-btn>
+        <BaseSwitch/>
         <v-app-bar-nav-icon x-large class="d-flex d-sm-none" @click="menuToggle()"></v-app-bar-nav-icon>
     </v-app-bar>
     <baseHamburger/> 
@@ -39,9 +46,11 @@
 
 <script>
 import BaseHamburger from '@/components/BaseHamburger.vue'
+import BaseSwitch from '@/components/BaseSwitch.vue'
   export default {
     components:{
-      BaseHamburger
+      BaseHamburger,
+      BaseSwitch
     },
     methods:{
       menuToggle: function(){
@@ -58,5 +67,8 @@ import BaseHamburger from '@/components/BaseHamburger.vue'
 <style lang="scss" scoped>
   .logo{
     cursor: pointer;
+  }
+   div.v-input__control{
+    align-items: center;
   }
 </style>

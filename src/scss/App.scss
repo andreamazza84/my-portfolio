@@ -1,3 +1,14 @@
+//Generale
+a, 
+li > a, 
+ul > li > a,
+.text-link{
+  text-decoration: none;
+  color: pink !important;
+  font-weight: 500; 
+}
+
+//Struttura
 #app{
   position: relative;
 }
@@ -18,15 +29,15 @@
   background-color: $b_mild;
   color: $f_clear;
   min-height: calc(100vh - 100px);
-  }
+}
 #contact{
   background-color: $b_mild;
   color: $f_clear;
 }
 #footer{
-    color: $b_primary;
-    background-color: $b_dark;
-    position: relative;
+  color: $b_primary;
+  background-color: $b_dark;
+  position: relative;
 }
 
 #about-me{

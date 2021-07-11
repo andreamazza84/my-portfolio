@@ -19,8 +19,8 @@
         max-width="1140"
       >
         <div class="biografy">
-        <p class="brackets-extrems">Sviluppatore Web con competenze in <br> HTML, SASS, JavaScript, jQuery, Vue, Vuetify, PHP, MySQL e Laravel.</p>
-
+        <p class="brackets-extrems" v-if="!this.$store.state.switch">Sviluppatore Web con competenze in <br> HTML, SASS, JavaScript, jQuery, Vue, Vuetify, PHP, MySQL e Laravel.</p>  
+        <p class="brackets-extrems" v-else>Web Developer using <br> HTML, SASS, JavaScript, jQuery, Vue, Vuetify, PHP, MySQL and Laravel.</p>
         <div class="brackets-wrap">
           <p class="brackets">{</p>
           <p class="brackets-long-text">Il mio percorso professionale è iniziato all'interno di ARPA EMR, con il proseguimento del lavoro di tesi

@@ -7,9 +7,7 @@ export default new Vuex.Store({
   state: {
     drawer: false,
     snackbar: false,
-    //Reindirizzamento a pagina form
-    //baseURL: 'https://andreamazza84.github.io/personale/',
-    baseURL: 'http://localhost:8080/personale/'
+    switch: false,
   },
   mutations: {
     SET_DRAWER(state){
@@ -17,6 +15,9 @@ export default new Vuex.Store({
     },
     SET_SNACKBAR(state){
       state.snackbar = !state.snackbar;
+    },
+    SET_SWITCH(state){
+      state.switch = !state.switch;
     }
   },
   actions: {
@@ -25,6 +26,9 @@ export default new Vuex.Store({
     },
     snackToggle( {commit} ){
       return commit('SET_SNACKBAR')
+    },
+    switchToggle( {commit} ){
+      return commit('SET_SWITCH')
     }
   },
   modules: {
