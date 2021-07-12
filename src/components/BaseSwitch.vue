@@ -1,7 +1,7 @@
 <template>
   <v-switch
-    v-model="switch1"
-    :messages="switch1 ? 'English' : 'Italiano'"
+    v-model="lang"
+    :messages="lang ? 'English' : 'Italiano'"
     @click="switchToggle()"
     inset
     color="#2B3C4A"
@@ -14,11 +14,11 @@
   export default {
     // data () {
     //   return {
-    //     switch1: true,
+    //     lang: true,
     //   }
     // },
     computed:{
-      switch1: {
+      lang: {
         get: function(){
           return this.$store.state.switch;
         },

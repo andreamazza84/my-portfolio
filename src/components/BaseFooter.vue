@@ -17,7 +17,7 @@
               
                 <i class="far fa-envelope"></i> | andrea.mazza84@gmail.com
                 <template v-slot:loader>
-                  <span>Copiato!</span>
+                  {{!lang ? 'Copiato' : 'Copied'}}
                 </template>
               </v-btn>
             </div>
@@ -36,7 +36,7 @@
               
                 <i class="fas fa-phone"></i> | +39 329 86 29 509
                 <template v-slot:loader>
-                  <span>Copiato!</span>
+                  {{!lang ? 'Copiato' : 'Copied'}}
                 </template>
               </v-btn>
             </div>
@@ -75,5 +75,15 @@ export default {
       this.loader = null
     },
   },
+  computed:{
+    lang: {
+      get: function(){
+        return this.$store.state.switch;
+      },
+      set: function(){
+        return this.$store.state.switch;
+      }
+    }
+  }
 }
 </script>

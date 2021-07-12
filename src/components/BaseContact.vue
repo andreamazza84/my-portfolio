@@ -9,7 +9,7 @@
           v-model="message.name"
           class="form-input"
           flat
-          label="Nome*"
+          :label="!lang ? 'Nome*' : 'Name*'"
           solo
           :error-messages="nameErrors"
           @input="$v.message.name.$touch()"
@@ -35,7 +35,7 @@
           v-model="message.object"
           class="form-input"
           flat
-          label="Oggetto*"
+          :label="!lang ? 'Oggetto*' : 'Object*'"
           solo
           :error-messages="objectErrors"
           @input="$v.message.object.$touch()"
@@ -48,7 +48,7 @@
           v-model="message.text"
           class="form-input"
           flat
-          label="Scrivi qua*"
+          :label="!lang ? 'Il tuo messaggio*' : 'Your message*'"
           solo
           :error-messages="textErrors"
           @input="$v.message.text.$touch()"
@@ -66,7 +66,9 @@
         >
           <template v-slot:label>
             <div>
-              Accetto l'informativa sull'utilizzo dei dati |
+              <span v-if="!lang">Accetto l'informativa sull'utilizzo dei dati |</span>
+              <span v-else> I Agree to </span>
+              
               <v-tooltip bottom>
                 <template v-slot:activator="{ on }">
                   <a
@@ -78,7 +80,8 @@
                   Privacy Policy 
                   </a>
                 </template>
-                Si apre in una nuova finestra.
+                <span v-if="!lang">Si apre in una nuova finestra.</span>
+                <span v-else>Opens in a new tab.</span>
               </v-tooltip>
             </div>
           </template>
@@ -90,28 +93,15 @@
         cols="auto"
       >
         <v-btn
-          class="btn-clear"
-          x-large
-          @click="clear()"
-        >
-          Reset
-        </v-btn>
-      </v-col>
-
-      <v-col
-        class="mx-auto"
-        cols="auto"
-      >
-        <v-btn
           type="submit" 
           class="btn-submit"
           x-large
         >
-          Invia
+          {{!lang ? 'Invia' : 'Submit'}}
         </v-btn>
       </v-col>
 
-      <BaseSnackbar :name="message.name"/>
+      <BaseSnackbar/>
  
     </v-row>
     <input type="text" name="_honey" style="display:none" class="hidden-input">
@@ -175,41 +165,81 @@
     }),
 
     computed: {
+      lang: {
+        get: function(){
+          return this.$store.state.switch;
+        },
+        set: function(){
+          return this.$store.state.switch;
+        }
+      },
       nameErrors () {
         const errors = []
         if (!this.$v.message.name.$dirty) return errors
-        !this.$v.message.name.maxLength && errors.push('Lunghezza massima 30 caratteri')
-        !this.$v.message.name.minLength && errors.push('Lunghezza minima 3 caratteri')
-        !this.$v.message.name.required && errors.push('Richiesto')
+        if(!this.$store.state.switch){
+          !this.$v.message.name.maxLength && errors.push('Lunghezza massima 30 caratteri')
+          !this.$v.message.name.minLength && errors.push('Lunghezza minima 3 caratteri')
+          !this.$v.message.name.required && errors.push('Richiesto')
+        }
+        else{
+          !this.$v.message.name.maxLength && errors.push('Maximum length 30 characters')
+          !this.$v.message.name.minLength && errors.push('Minimum length 3 characters')
+          !this.$v.message.name.required && errors.push('Required')
+        }
         return errors
       },
       emailErrors () {
         const errors = []
         if (!this.$v.message.email.$dirty) return errors
-        this.$v.message.email.maxLength && errors.push('Lunghezza massima 30 caratteri')
-        !this.$v.message.email.email && errors.push('Inserisci un indirizzo email valido')
-        !this.$v.message.email.required && errors.push('Richiesto')
+        if(!this.$store.state.switch){
+          this.$v.message.email.maxLength && errors.push('Lunghezza massima 30 caratteri')
+          !this.$v.message.email.email && errors.push('Inserisci un indirizzo email valido')
+          !this.$v.message.email.required && errors.push('Richiesto')
+        }
+        else{
+          this.$v.message.email.maxLength && errors.push('Maximum length 30 characters')
+          !this.$v.message.email.email && errors.push('Insert a valid email address')
+          !this.$v.message.email.required && errors.push('Required')
+        }
         return errors
       },
       objectErrors () {
         const errors = []
         if (!this.$v.message.object.$dirty) return errors
-        !this.$v.message.object.maxLength && errors.push('Lunghezza massima 30 caratteri')
-        !this.$v.message.object.minLength && errors.push('Lunghezza minima 3 caratteri')
-        !this.$v.message.object.required && errors.push('Richiesto')
+        if(!this.$store.state.switch){
+          !this.$v.message.object.maxLength && errors.push('Lunghezza massima 30 caratteri')
+          !this.$v.message.object.minLength && errors.push('Lunghezza minima 3 caratteri')
+          !this.$v.message.object.required && errors.push('Richiesto')
+        }
+        else{
+          !this.$v.message.object.maxLength && errors.push('Maximum length 30 characters')
+          !this.$v.message.object.minLength && errors.push('Minimum length 3 characters')
+          !this.$v.message.object.required && errors.push('Required')
+        }
         return errors
       },
       textErrors () {
         const errors = []
         if (!this.$v.message.text.$dirty) return errors
-        !this.$v.message.text.minLength && errors.push('Lunghezza minima 20 caratteri')
-        !this.$v.message.text.required && errors.push('Richiesto')
+        if(!this.$store.state.switch){
+          !this.$v.message.text.minLength && errors.push('Lunghezza minima 20 caratteri')
+          !this.$v.message.text.required && errors.push('Richiesto')
+        }
+        else{
+          !this.$v.message.text.minLength && errors.push('Minimum length 20 characters')
+          !this.$v.message.text.required && errors.push('Required')
+        }
         return errors
       },
       checkboxErrors () {
         const errors = []
         if (!this.$v.message.checkbox.$dirty) return errors
-        !this.$v.message.checkbox.checked && errors.push('Devi spuntare questa casella per continuare')
+        if(!this.$store.state.switch){
+          !this.$v.message.checkbox.checked && errors.push('Devi spuntare questa casella per continuare')
+        }
+        else{
+          !this.$v.message.checkbox.checked && errors.push('You have to agree to continue')
+        }
         return errors
       },
     },
@@ -242,6 +272,7 @@
             if(response.data.ok){
               this.$store.dispatch('snackToggle');
               console.log("Message sent ", response.data.ok);
+              this.clear()
             }
           })
           .catch( error => {
@@ -269,6 +300,7 @@
         this.message.email = ''
         this.message.object = ''
         this.message.select = null
+        this.message.text = ''
         this.message.checkbox = false
       },
     },

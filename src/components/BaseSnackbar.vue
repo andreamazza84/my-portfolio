@@ -3,7 +3,7 @@
     v-model="snackbar"
     elevation="10"
   >
-    {{ `Ciao ${username}! Grazie per il tuo messaggio` }}
+    {{ !lang ? 'Grazie per il tuo messaggio' : 'Thank you. Your message has been sent' }}
      <template v-slot:action="{ attrs }">
       <v-btn
         light
@@ -13,7 +13,7 @@
         v-bind="attrs"
         @click="snackToggle()"
       >
-        Chiudi
+        {{!lang ? 'Chiudi' : 'Close'}}
       </v-btn>
     </template>
   </v-snackbar>
@@ -21,12 +21,8 @@
 
 <script>
   export default {
-    props:{
-      name:{
-        type: String,
-        required: true,
-      }
-    },
+    props:{},
+    
     computed:{
       snackbar:{
         get: function() {
@@ -36,14 +32,14 @@
           return this.$store.state.snackbar; 
         }
       },
-      username:{
+      lang: {
         get: function(){
-          return name
+          return this.$store.state.switch;
         },
         set: function(){
-          return name
-        }  
-      }
+          return this.$store.state.switch;
+        }
+      },
     },
     methods:{
       snackToggle(){

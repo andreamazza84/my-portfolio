@@ -17,16 +17,13 @@
         class="mx-auto title font-weight-light mb-8 align-center"
         max-width="1140"
       >
-        <p class="subtitle">Alcuni dei lavori sviluppati durante il Corso 
+        <p class="subtitle" v-if="!lang">Alcuni dei lavori sviluppati durante il Corso 
           <a href="https://www.credential.net/embed/f4a7bd32-021a-4d45-a2f7-5bbc22e787b3" target="_blank">Boolean Careers</a>
         2020/21</p>
-        <!--  <iframe
-            src="https://www.credential.net/embed/f4a7bd32-021a-4d45-a2f7-5bbc22e787b3"
-            width="800"
-            height="600"
-            frameborder="0"
-            allowfullscreen>
-        </iframe> -->
+        <p class="subtitle" v-else>Some works done during the
+          <a href="https://www.credential.net/embed/f4a7bd32-021a-4d45-a2f7-5bbc22e787b3" target="_blank">Boolean Careers</a>
+        2020/21 Web Development Course</p>
+       
       </v-responsive>
 
       <v-row>
@@ -171,6 +168,16 @@ export default {
         $f_dark: '#1e1e1e',
         $f_mild: '#2B3C4A',
         $f_semidark: '#333',
+      }
+    }
+  },
+  computed:{
+    lang: {
+      get: function(){
+        return this.$store.state.switch;
+      },
+      set: function(){
+        return this.$store.state.switch;
       }
     }
   }

@@ -8,8 +8,7 @@
     <div class="py-12"></div>
 
     <v-container class="form">
-      <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">Contatti</h2>
-
+      <h2 class="display-2 font-weight-bold mb-3 text-uppercase text-center">{{!lang ? 'Contatti' : 'Contacts'}}</h2>
       <v-responsive
         class="mx-auto mb-12"
         width="56"
@@ -32,6 +31,16 @@ import BaseContact from '@/components/BaseContact'
 export default{
   components: {
     BaseContact
+  },
+  computed:{
+    lang: {
+      get: function(){
+        return this.$store.state.switch;
+      },
+      set: function(){
+        return this.$store.state.switch;
+      }
+    }
   }
 }
 </script>

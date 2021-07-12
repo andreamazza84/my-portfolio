@@ -28,15 +28,9 @@
       <v-spacer></v-spacer>
         <!-- <router-link :to="{ name: 'PageThanks'}">Prova</router-link> -->
         <v-app-bar-nav-icon x-large @click="$vuetify.goTo('#hero')"><v-icon>mdi-chevron-double-up</v-icon></v-app-bar-nav-icon>
-        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#about-me')">
-          <span v-if="!this.$store.state.switch">su-di-me</span>
-          <span v-else>about</span>
-        </v-btn>
+        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#about-me')">{{!lang ? 'SU-DI-ME' : 'ABOUT'}}</v-btn>
         <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#portfolio')">portfolio</v-btn>
-        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#contact')">
-          <span v-if="!this.$store.state.switch">contatti</span>
-          <span v-else>contacts</span>
-        </v-btn>
+        <v-btn x-large plain class="d-none d-sm-inline-flex" @click="$vuetify.goTo('#contact')">{{!lang ? 'CONTATTI' : 'CONTACTS'}}</v-btn>
         <BaseSwitch/>
         <v-app-bar-nav-icon x-large class="d-flex d-sm-none" @click="menuToggle()"></v-app-bar-nav-icon>
     </v-app-bar>
@@ -52,15 +46,25 @@ import BaseSwitch from '@/components/BaseSwitch.vue'
       BaseHamburger,
       BaseSwitch
     },
+    data: () => ({
+      drawer: false,
+      group: null,
+    }),
+    computed:{
+      lang: {
+        get: function(){
+          return this.$store.state.switch;
+        },
+        set: function(){
+          return this.$store.state.switch;
+        }
+      },
+    },
     methods:{
       menuToggle: function(){
         const result = this.$store.dispatch('menuToggle');
       },
     },
-    data: () => ({
-      drawer: false,
-      group: null,
-    }),
   }
 </script>
 
